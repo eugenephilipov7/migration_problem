@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "types": ["node"],
+    "target": "ES2020",
+    "allowJs": true
+  },
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts",
+    "../../libs/request-components/src/lib/request-crud/bootstrap.ts",
+  ],
+  "include": [
+    "src/**/*.d.ts",
+  ],
+  "exclude": ["**/*.test.ts", "**/*.spec.ts", "jest.config.ts"]
+}

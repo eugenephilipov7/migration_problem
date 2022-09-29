@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "projects": {
+    "my-mf": "apps/my-mf",
+    "request-components": "libs/request-components"
+  },
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json"
+}

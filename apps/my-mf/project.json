@@ -1,0 +1,103 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/my-mf/src",
+  "prefix": "mymf",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/my-mf",
+        "index": "apps/my-mf/src/index.html",
+        "main": "apps/my-mf/src/main.ts",
+        "polyfills": "apps/my-mf/src/polyfills.ts",
+        "tsConfig": "apps/my-mf/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/my-mf/src/favicon.ico", "apps/my-mf/src/assets"],
+        "styles": ["apps/my-mf/src/styles.scss"],
+        "customWebpackConfig": {
+          "path": "apps/my-mf/webpack.config.js"
+        },
+        "buildLibsFromSource": false
+      },
+      "configurations": {
+        "production": {
+
+          "optimization": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "2mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "500kb",
+              "maximumError": "500kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/my-mf/src/environments/environment.ts",
+              "with": "apps/my-mf/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/my-mf/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "my-mf:build:production"
+        },
+        "development": {
+          "browserTarget": "my-mf:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4300,
+        "publicHost": "http://localhost:4300"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "my-mf:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/my-mf/src/**/*.ts",
+          "apps/my-mf/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/my-mf"],
+      "options": {
+        "jestConfig": "apps/my-mf/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
