@@ -91,12 +91,7 @@
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/my-mf"],
-      "options": {
-        "jestConfig": "apps/my-mf/jest.config.ts",
-        "passWithNoTests": true
-      }
+
     }
   },
   "tags": []
